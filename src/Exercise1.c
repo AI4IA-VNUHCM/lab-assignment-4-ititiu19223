@@ -20,7 +20,7 @@ void Ex1(int n)
 	int arr[n][n];
 
 	// Iterate through every line and
-	for (int line = 0; line < n; line++)
+	for (int line = 0; line < n + 1; line++)
 	{
 		for (int i = 0; i <= line; i++)
 		{
@@ -29,7 +29,7 @@ void Ex1(int n)
 			else
 				arr[line][i] = arr[line - 1][i - 1] +
 							   arr[line - 1][i];
-			printf("%d", arr[line][i]);
+			printf("%d ", arr[line][i]);
 		}
 		printf("\n");
 	}
