@@ -27,8 +27,10 @@ void Array2Dconverter(int arr[], int a[SIZE][SIZE], int m, int n)
 	int row, column;
 	int counter = 0;
 	//Convert 1D array to 2D array
-	for (row = 0; row <= (m - 1); row ++){
-		for (column = 0; column <= (n - 1); column ++){
+	for (row = 0; row <= (m - 1); row++)
+	{
+		for (column = 0; column <= (n - 1); column++)
+		{
 			a[row][column] = arr[counter];
 			counter++;
 		}
@@ -39,35 +41,78 @@ void printArray(int a[SIZE][SIZE], int m, int n)
 {
 	int row, column;
 
-	for (row = 0; row <= (m - 1); row ++){
-		for (column = 0; column <= (n - 1); column ++){
+	for (row = 0; row <= (m - 1); row++)
+	{
+		for (column = 0; column <= (n - 1); column++)
+		{
 			printf("%d ", a[row][column]);
 		}
 		printf("\n");
 	}
 }
 
-void insertRow(int arr[], int a[SIZE][SIZE],int rowIndex, int m, int n){
+void insertRow(int arr[], int a[SIZE][SIZE], int rowIndex, int m, int n)
+{
 	//Your codes here
-	
+	for (int i = m; i > rowIndex; i--)
+	{
+		for (int j = 0; j < n; j++)
+		{
+			a[i][j] = a[i - 1][j];
+		}
+	}
+	for (int j = 0; j < n; j++)
+	{
+		a[rowIndex][j] = arr[j];
+	}
+	printArray(a, m + 1, n);
 }
 
-void removeRow(int a[SIZE][SIZE], int rowIndex, int m, int n){
+void removeRow(int a[SIZE][SIZE], int rowIndex, int m, int n)
+{
 	//Your codes here
-	
+	for (int i = rowIndex; i < m; i++)
+	{
+		for (int j = 0; j < n; j++)
+		{
+			a[i][j] = a[i + 1][j];
+		}
+	}
+	printArray(a, m - 1, n);
 }
 
-void insertCol(int arr[], int a[SIZE][SIZE],int colIndex, int m, int n){
+void insertCol(int arr[], int a[SIZE][SIZE], int colIndex, int m, int n)
+{
 	//Your codes here
-	
+	for (int j = n; j > colIndex; j--)
+	{
+		for (int i = 0; i < m; i++)
+		{
+			a[i][j] = a[i][j - 1];
+		}
+	}
+	for (int i = 0; i < m; i++)
+	{
+		a[i][colIndex] = arr[i];
+	}
+	printArray(a, m, n + 1);
 }
 
-void removeCol(int a[SIZE][SIZE], int colIndex, int m, int n){
+void removeCol(int a[SIZE][SIZE], int colIndex, int m, int n)
+{
 	//Your codes here
-	
+	for (int j = colIndex; j < n; j++)
+	{
+		for (int i = 0; i < m; i++)
+		{
+			a[i][j] = a[i][j + 1];
+		}
+	}
+	printArray(a, m, n - 1);
 }
 
-int main(int argc, char *argv[]) {
+int main(int argc, char *argv[])
+{
 	//testing variable, applying it to your algorithm for auto-evaluating
 	int row = atoi(argv[1]);
 	int col = atoi(argv[2]);
@@ -80,46 +125,53 @@ int main(int argc, char *argv[]) {
 	*/
 	int loc = atoi(argv[4]); //location of inserting/removing row/column
 	int a[SIZE][SIZE];
-	if(choice == 2 || choice == 4){
-		argc-=5;
-		int testcase[argc],i;
-		for(i=0; i<argc;i++){
-			testcase[i] = atoi(argv[i+5]);
+	if (choice == 2 || choice == 4)
+	{
+		argc -= 5;
+		int testcase[argc], i;
+		for (i = 0; i < argc; i++)
+		{
+			testcase[i] = atoi(argv[i + 5]);
 		}
-		Array2Dconverter(testcase,a,row,col);
-		if(choice == 2)
-			removeRow(a,loc,row,col);
+		Array2Dconverter(testcase, a, row, col);
+		if (choice == 2)
+			removeRow(a, loc, row, col);
 		else
-			removeCol(a,loc,row,col);
-
+			removeCol(a, loc, row, col);
 	}
-	else if(choice == 1){
-		int in_row[col],column;
-		for (column = 0; column < col; column ++){
-			in_row[column]= atoi(argv[column+5]);
+	else if (choice == 1)
+	{
+		int in_row[col], column;
+		for (column = 0; column < col; column++)
+		{
+			in_row[column] = atoi(argv[column + 5]);
 		}
-		argc-=5;
-		argc-=col;
-		int testcase[argc],i;
-		for(i=0; i<argc;i++){
-			testcase[i] = atoi(argv[i+5+col]);
+		argc -= 5;
+		argc -= col;
+		int testcase[argc], i;
+		for (i = 0; i < argc; i++)
+		{
+			testcase[i] = atoi(argv[i + 5 + col]);
 		}
-		Array2Dconverter(testcase,a,row,col);
-		insertRow(in_row,a,loc,row,col);
+		Array2Dconverter(testcase, a, row, col);
+		insertRow(in_row, a, loc, row, col);
 	}
-	else if(choice == 3){
-		int in_col[row],r;
-		for (r = 0; r < row; r ++){
-			in_col[r]= atoi(argv[r+5]);
+	else if (choice == 3)
+	{
+		int in_col[row], r;
+		for (r = 0; r < row; r++)
+		{
+			in_col[r] = atoi(argv[r + 5]);
 		}
-		argc-=5;
-		argc-=row;
-		int testcase[argc],i;
-		for(i=0; i<argc;i++){
-			testcase[i] = atoi(argv[i+5+row]);
+		argc -= 5;
+		argc -= row;
+		int testcase[argc], i;
+		for (i = 0; i < argc; i++)
+		{
+			testcase[i] = atoi(argv[i + 5 + row]);
 		}
-		Array2Dconverter(testcase,a,row,col);
-		insertCol(in_col,a,loc,row,col);
+		Array2Dconverter(testcase, a, row, col);
+		insertCol(in_col, a, loc, row, col);
 	}
 	else
 		printf("Invalid option!");
