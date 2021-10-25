@@ -18,6 +18,7 @@ ________________________________________________________________________________
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <math.h>
 #define SIZE 100
 
 void Array2Dconverter(int arr[], int a[SIZE][SIZE], int m, int n)
@@ -40,7 +41,7 @@ void Ex5(int arr[], int m, int n)
 	int a[SIZE][SIZE];
 	Array2Dconverter(arr, a, m, n);
 	//Your codes here
-	int max = -10e11;
+	int max = -1000;
 	for (int i = 0; i < m; i++)
 	{
 		int row = a[i][0];
