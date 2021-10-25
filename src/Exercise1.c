@@ -19,7 +19,6 @@ void Ex1(int n)
 {
 	int arr[n][n];
 
-	// Iterate through every line and
 	for (int line = 0; line < n + 1; line++)
 	{
 		for (int i = 0; i <= line; i++)
