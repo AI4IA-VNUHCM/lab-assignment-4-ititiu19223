@@ -27,8 +27,10 @@ void Array2Dconverter(int arr[], int a[SIZE][SIZE], int m, int n)
 	int row, column;
 	int counter = 0;
 	//Convert 1D array to 2D array
-	for (row = 0; row <= (m - 1); row ++){
-		for (column = 0; column <= (n - 1); column ++){
+	for (row = 0; row <= (m - 1); row++)
+	{
+		for (column = 0; column <= (n - 1); column++)
+		{
 			a[row][column] = arr[counter];
 			counter++;
 		}
@@ -39,32 +41,61 @@ void printArray(int a[SIZE][SIZE], int m, int n)
 {
 	int row, column;
 
-	for (row = 0; row <= (m - 1); row ++){
-		for (column = 0; column <= (n - 1); column ++){
+	for (row = 0; row <= (m - 1); row++)
+	{
+		for (column = 0; column <= (n - 1); column++)
+		{
 			printf("%d ", a[row][column]);
 		}
 		printf("\n");
 	}
 }
 
-void Ex3(int in_arr[], int n){
+void Ex3(int in_arr[], int n)
+{
 	int a[SIZE][SIZE];
-	Array2Dconverter(in_arr,a,n,n);
+	Array2Dconverter(in_arr, a, n, n);
 	//Your codes here
-	
-	printArray(a,n,n);
+	for (int i = 0; i < n - 1; i++)
+	{
+		for (int j = i + 1; j < n; j++)
+		{
+			if (a[i][i] > a[j][j])
+			{
+				int temp = a[i][i];
+				a[i][i] = a[j][j];
+				a[j][j] = temp;
+			}
+		}
+	}
+
+	for (int i = n - 1; i > 0; i--)
+	{
+		for (int j = i - 1; j >= 0; j--)
+		{
+			if (a[i][n - i - 1] < a[j][n - j - 1])
+			{
+				int temp = a[i][n - i - 1];
+				a[i][n - i - 1] = a[j][n - j - 1];
+				a[j][n - j - 1] = temp;
+			}
+		}
+	}
+	printArray(a, n, n);
 }
 
-int main(int argc, char *argv[]) {
+int main(int argc, char *argv[])
+{
 	//testing variable, applying it to your algorithm for auto-evaluating
 	int edge = atoi(argv[1]);
-	argc-=2;
-	int testcase[argc],i;
-	for(i=0; i<argc;i++){
-		testcase[i] = atoi(argv[i+2]);
+	argc -= 2;
+	int testcase[argc], i;
+	for (i = 0; i < argc; i++)
+	{
+		testcase[i] = atoi(argv[i + 2]);
 	}
 
 	Ex3(testcase, edge);
-	
+
 	return 0;
 }

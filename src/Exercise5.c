@@ -18,6 +18,7 @@ ________________________________________________________________________________
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <math.h>
 #define SIZE 100
 
 void Array2Dconverter(int arr[], int a[SIZE][SIZE], int m, int n)
@@ -25,32 +26,53 @@ void Array2Dconverter(int arr[], int a[SIZE][SIZE], int m, int n)
 	int row, column;
 	int counter = 0;
 	//Convert 1D array to 2D array
-	for (row = 0; row <= (m - 1); row ++){
-		for (column = 0; column <= (n - 1); column ++){
+	for (row = 0; row <= (m - 1); row++)
+	{
+		for (column = 0; column <= (n - 1); column++)
+		{
 			a[row][column] = arr[counter];
 			counter++;
 		}
 	}
 }
 
-void Ex5(int arr[], int m, int n){
+void Ex5(int arr[], int m, int n)
+{
 	int a[SIZE][SIZE];
-	Array2Dconverter(arr,a,m,n);
+	Array2Dconverter(arr, a, m, n);
 	//Your codes here
-
+	int max = -1000;
+	for (int i = 0; i < m; i++)
+	{
+		int row = a[i][0];
+		for (int j = 0; j < n; j++)
+		{
+			if (row > a[i][j])
+			{
+				row = a[i][j];
+			}
+		}
+		if (max < row)
+		{
+			max = row;
+		}
+	}
+	printf("%d", max);
 }
 
-int main(int argc, char *argv[]) {
+int main(int argc, char *argv[])
+{
 	//testing variable, applying it to your algorithm for auto-evaluating
 	int row = atoi(argv[1]);
 	int col = atoi(argv[2]);
-	argc-=3;
-	int testcase[argc],i;
-	for(i=0; i<argc;i++){
-		testcase[i] = atoi(argv[i+3]);
+	argc -= 3;
+	int testcase[argc], i;
+	for (i = 0; i < argc; i++)
+	{
+		testcase[i] = atoi(argv[i + 3]);
 	}
 
 	Ex5(testcase, row, col);
-	
+
 	return 0;
 }
